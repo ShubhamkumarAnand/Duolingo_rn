@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
-import { ScrollView, StyleSheet, Text, View, Image, TextInput } from 'react-native';
+import { Text, View, Image, TextInput } from 'react-native';
+import styles from './App.styles';
 import icon from './assets/icon.png'
 
 const App = () => {
@@ -7,7 +8,7 @@ const App = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Welcome to the {appName}!</Text>
-      <Text style={styles.text} numberOfLines={2}>
+      <Text style={[styles.text, styles.red, {color: appName === 'Duolingo' ? 'green': 'red'}]} numberOfLines={2}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
       </Text>
       <Image source={{
@@ -20,18 +21,3 @@ const App = () => {
 }
 
 export default App
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  text: {
-    fontWeight: '900',
-    fontSize: 21,
-    marginVertical: 10,
-    padding: 5
-  }
-});
