@@ -1,0 +1,21 @@
+{
+  "bracketSpacing": true,
+  "bracketSameLine": true,
+  "singleQuote": false,
+  "jsxSingleQuote": false,
+  "trailingComma": "es5",
+  "semi": true,
+  "printWidth": 110,
+  "arrowParens": "always",
+  "endOfLine": "auto",
+  "importOrder": [
+    "(.*)/__mocks__/(.*)",
+    "<THIRD_PARTY_MODULES>",
+    "^@lib/(.*)$",
+    "^@components/(.*)$",
+    "^@(server)/(.*)$",
+    "^~/(.*)$",
+    "^[./]"
+  ],
+  "importOrderSeparation": true
+}

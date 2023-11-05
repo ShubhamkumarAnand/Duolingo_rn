@@ -1,21 +1,18 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-  container: {
+  root: { flex: 1, alignItems: "center", justifyContent: "center", padding: 15, marginTop: 30 },
+  text: { fontWeight: "900", fontSize: 20, alignSelf: "stretch" },
+  optionsContainer: {
+    padding: 10,
+    width: "100%",
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    alignContent: "space-between",
+    alignItems: "center",
   },
-  text: {
-    fontWeight: '900',
-    fontSize: 21,
-    marginVertical: 10,
-    padding: 5
-  },
-  red: {
-    color: 'red'
-  }
 });
 
-export default styles
+export default styles;
