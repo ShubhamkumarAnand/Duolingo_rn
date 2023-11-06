@@ -1,31 +1,51 @@
-import { View, Text } from "react-native";
+import { View, Text, Alert } from "react-native";
 import styles from "./App.styles";
 import OptionContainer from "./src/components/OptionsContainer";
-import question from "./assets/data/oneQuestionWithOption";
+import questions from "./assets/data/imageMultipleChoiceQuestions";
 import { StatusBar } from "expo-status-bar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "./src/components/Button";
 
 const App = () => {
-  const [selected, setSelected] = useState(null);
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [currentQuestion, setCurrentQuestion] = useState(questions[currentQuestionIndex]);
 
-  const onButtonPress = () => console.warn("Pressed");
+  useEffect(() => {
+    if (currentQuestionIndex >= questions.length) {
+      Alert.alert("Congratulation! All Correct 🤯");
+      setCurrentQuestionIndex(0);
+    } else {
+      setCurrentQuestion(questions[currentQuestionIndex]);
+    }
+  }, [currentQuestionIndex]);
+
+  const onButtonPress = () => {
+    if (selectedOption.correct) {
+      Alert.alert("Correct Option!");
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+      setSelectedOption(null);
+    } else {
+      Alert.alert("Wrong Option!");
+    }
+  };
+
   return (
     <View style={styles.root}>
-      <Text style={styles.text}>{question.question}</Text>
+      <Text style={styles.text}>{currentQuestion.question}</Text>
       <View style={styles.optionsContainer}>
-        {question.options.map((option) => (
+        {currentQuestion.options.map((option) => (
           <OptionContainer
             key={option.id}
             imageUrl={option.image}
             name={option.text}
-            isSelected={selected?.id === option.id}
-            onPress={() => setSelected(option)}
+            isSelected={selectedOption?.id === option.id}
+            onPress={() => setSelectedOption(option)}
           />
         ))}
       </View>
-      <Button onPress={onButtonPress} text="Check" disabled={!selected} />
-      <StatusBar style="light" />
+      <Button onPress={onButtonPress} text="Check" disabled={!selectedOption} />
+      <StatusBar style="auto" />
     </View>
   );
 };
